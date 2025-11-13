@@ -1,0 +1,19 @@
+﻿@page "/TopSentence"
+@layout PanelLayout
+
+<MudGrid Justify="Justify.Center" Class="pt-10">
+    <MudItem sm="6" xs="12">
+        <EditForm Model="vm" OnValidSubmit="Submit">
+            <DataAnnotationsValidator />
+            <MudHidden @bind-Value="vm!.Id"/>
+            <MudTextField Label="جمله * " @bind-Value="vm!.Value" Class="my-5" For="@(() => vm!.Value)" Variant="Variant.Outlined" OnlyValidateIfDirty />
+            <MudGrid Justify="Justify.Center" Class="mt-8">
+                <MudItem sm="3" xs="5">
+                    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" FullWidth="true" Size="Size.Large">
+                        ذخیره
+                    </MudButton>
+                </MudItem>
+            </MudGrid>
+        </EditForm>
+    </MudItem>
+</MudGrid>

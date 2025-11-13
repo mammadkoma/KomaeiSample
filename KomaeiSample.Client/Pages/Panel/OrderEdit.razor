@@ -1,0 +1,27 @@
+﻿<MudDialog DefaultFocus="DefaultFocus.FirstChild">
+    <DialogContent>
+        <EditForm Model="vm" OnValidSubmit="OnValidSubmit">
+            <DataAnnotationsValidator />
+            <MudGrid>
+                <MudItem xs=12 sm=6>
+                    <MudHidden @bind-Value="vm.AddUserMobile" />
+                    <MudSelect T="int" Label="وضعیت *" @bind-Value="vm.OrderStatusId" For="@(() => vm.OrderStatusId)" Variant="Variant.Outlined">
+                        @foreach (var item in Helper.GetOrderStatuses())
+                        {
+                            <MudSelectItem T="int" Value="item.Id">@item.Title</MudSelectItem>
+                        }
+                    </MudSelect>
+                </MudItem>
+            </MudGrid>
+
+            <MudStack Row Class="mb-2 mt-5">
+                <MudButton Color="Color.Success" Variant="Variant.Filled" ButtonType="ButtonType.Submit" Style="width: 92px;">
+                    ذخیره
+                </MudButton>
+                <MudButton Color="Color.Secondary" Variant="Variant.Filled" OnClick="() => MudDialog.Cancel()" Class="ms-5">
+                    انصراف
+                </MudButton>
+            </MudStack>
+        </EditForm>
+    </DialogContent>
+</MudDialog>

@@ -1,0 +1,7 @@
+﻿dotnet ef dbcontext scaffold "Server=.\SQLExpress2022;Database=KomaeiSample;Trusted_Connection=True;TrustServerCertificate=True;Connect Timeout=120;" Microsoft.EntityFrameworkCore.SqlServer --no-onconfiguring -o Data/Entities --context-dir Data -c AppDbContext -f
+
+dotnet ef dbcontext scaffold "Data Source=(localdb)\ProjectModels;Initial Catalog=KomaeiSample;Integrated Security=True;Connect Timeout=60;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False" Microsoft.EntityFrameworkCore.SqlServer --no-onconfiguring -o Data/Entities --context-dir Data -c AppDbContext -f
+
+dotnet ef dbcontext scaffold "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=KomaeiSample;Integrated Security=True;Connect Timeout=60;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False" Microsoft.EntityFrameworkCore.SqlServer --no-onconfiguring -o Data/Entities --context-dir Data -c AppDbContext -f
+
+dotnet tool update --global dotnet-ef

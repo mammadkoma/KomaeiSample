@@ -1,0 +1,64 @@
+﻿<MudDataGrid Items="OrderHospitalDtos" SortMode="SortMode.None" Bordered Hover Dense Striped Elevation="0" Class="mb-5">
+    <Columns>
+        @if (HasAdminColumns)
+        {
+            <TemplateColumn Title="عملیات">
+                <CellTemplate>
+                    <MudMenu Icon="@Icons.Material.Filled.MoreVert" Size="Size.Small">
+                        <a href=@($"Uploads/Order/{context.Item.FileName}{context.Item.FileExtension}") download="@($"{context.Item.Id}{context.Item.FileExtension}")" style="color:#424242">
+                            <MudMenuItem IconColor="Color.Error" Icon="@Icons.Material.Filled.Download">دریافت فایل &nbsp;&nbsp;</MudMenuItem>
+                        </a>
+                        <MudMenuItem IconColor="Color.Info" Icon="@Icons.Material.Filled.Edit" OnClick="@(() => OpenAddEditDialog(context.Item.Id, context.Item.OrderStatusId, context.Item.AddUserMobile!))">تغییر وضعیت &nbsp;</MudMenuItem>
+                    </MudMenu>
+                </CellTemplate>
+            </TemplateColumn>
+        }
+        <TemplateColumn Title="فاکتور">
+            <CellTemplate>
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Small"
+                           OnClick="@(() => OpenInvoice(context.Item.Id))">
+                    @context.Item.Id
+                </MudButton>
+            </CellTemplate>
+        </TemplateColumn>
+        @if (HasAdminColumns)
+        {
+            <PropertyColumn Property="x => x.AddUserFullName" Title="نام مشتری" HeaderStyle="min-width:160px" />
+            <PropertyColumn Property="x => x.AddUserMobile" Title="موبایل مشتری" />
+        }
+        <PropertyColumn Property="x => x.OrderStatusTitle" Title="وضعیت سفارش" HeaderStyle="min-width:151px" />
+        <PropertyColumn Property="x => x.ModelTitle" Title="مدل" HeaderStyle="min-width:160px" />
+        <PropertyColumn Property="x => x.HospitalTemplateTemplateName" Title="قالب" HeaderStyle="min-width:160px" />
+        <PropertyColumn Property="x => x.PaperTitle" Title="کاغذ" />
+        <PropertyColumn Property="x => x.GrammageTitle" Title="گرماژ" />
+        <PropertyColumn Property="x => x.CountTitle" Title="تعداد" />
+        <PropertyColumn Property="x => x.CellophaneTitle" Title="سلفون" HeaderStyle="min-width:140px" />
+        <PropertyColumn Property="x => x.UvTitle" Title="یو وی" HeaderStyle="min-width:140px" />
+        <PropertyColumn Property="x => x.Price" Title="قیمت" Format="N0" />
+        <PropertyColumn Property="x => x.PriceAfterDiscount" Title="قیمت پس از تخفیف" Format="N0" />
+        <PropertyColumn Property="x => x.DeliveryMethodTitle" Title="روش دریافت" HeaderStyle="min-width:140px" />
+        <PropertyColumn Property="x => x.AddressTypeTitle" Title="تهران/شهرستان" />
+        <PropertyColumn Property="x => x.TehranAreaTitle" Title="منطقه تهران" />
+        <TemplateColumn T="OrderHospitalDto" Title="آدرس" HeaderStyle="min-width:250px">
+            <CellTemplate Context="context">
+                <MudTooltip Text="@context.Item.Address">
+                    <span>
+                        @(context.Item.Address?.Length > 25 ? context.Item.Address.Substring(0, 25) + " ..." : context.Item.Address)
+                    </span>
+                </MudTooltip>
+            </CellTemplate>
+        </TemplateColumn>
+        <PropertyColumn Property="x => x.PostalCode" Title="کدپستی" />
+        <TemplateColumn T="OrderHospitalDto" Title="توضیحات" HeaderStyle="min-width:250px">
+            <CellTemplate Context="context">
+                <MudTooltip Text="@context.Item.Desc">
+                    <span>
+                        @(context.Item.Desc?.Length > 25 ? context.Item.Desc.Substring(0, 25) + " ..." : context.Item.Desc)
+                    </span>
+                </MudTooltip>
+            </CellTemplate>
+        </TemplateColumn>
+        <PropertyColumn Property="x => x.AddDate.ToShamsiDateTime()" Title="تاریخ سفارش" HeaderStyle="min-width:200px" />
+        <PropertyColumn Property="x => x.PayDate.ToShamsiDateTime()" Title="تاریخ پرداخت" HeaderStyle="min-width:190px" />
+    </Columns>
+</MudDataGrid>

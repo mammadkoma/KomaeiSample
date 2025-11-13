@@ -1,0 +1,32 @@
+﻿<MudForm @ref="form" Model="vm" Class="col-md-8 mx-auto">
+    <MudGrid Justify="Justify.Center">
+        <MudItem>
+            <MudFileUpload T="IBrowserFile" @bind-Files="vm.File" For="@(() => vm.File)" SuppressOnChangeWhenInvalid Accept=".jpg,.jpeg" OnFilesChanged="OnFilesChanged">
+                <ActivatorContent>
+                    <MudButton Variant="Variant.Filled" Color="Color.Default" StartIcon="@Icons.Material.Filled.CloudUpload" FullWidth Class="mt-3">
+                        انتخاب تصویر (حداکثر 300 KB با فرمت jpg)
+                    </MudButton>
+                </ActivatorContent>
+            </MudFileUpload>
+            @if (LogoFileName.IsNullOrEmpty() == false && previewImageUrl.IsNullOrEmpty() == true)
+            {
+                <MudImage Src="@("Uploads/UserLogo/" + LogoFileName)" Fluid Class="mt-2 rounded" />
+            }
+            @if (previewImageUrl.IsNullOrEmpty() == false)
+            {
+                <div class="mud-grid justify-center">
+                    <MudImage Src="@previewImageUrl" Fluid Class="mt-2 rounded" />
+                </div>
+            }
+            <MudGrid Justify="Justify.Center">
+                <MudItem>
+                    <MudButton OnClick="Submit" Variant="Variant.Filled" Class="mb-3 mt-5" Style="width:150px"
+                               Color="Color.Primary" FullWidth="true" Size="Size.Large" Disabled="vm.File==null">
+                        ذخیره
+                    </MudButton>
+                </MudItem>
+            </MudGrid>
+        </MudItem>
+    </MudGrid>
+</MudForm>
+

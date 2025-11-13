@@ -1,0 +1,43 @@
+﻿@using KomaeiSample.Client.Configs
+<CascadingAuthenticationState>
+    <MudRTLProvider RightToLeft="true">
+        <MudThemeProvider Theme="AppTheme" />
+        <MudPopoverProvider />
+        <MudDialogProvider />
+        <MudSnackbarProvider />
+        <Router AppAssembly="@typeof(App).Assembly">
+            <Found Context="routeData">
+                <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+                <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+            </Found>
+            <NotFound>
+                <PageTitle>Not found</PageTitle>
+                <LayoutView Layout="@typeof(MainLayout)">
+                    <p role="alert">چنین صفحه ای وجود ندارد.</p>
+                </LayoutView>
+            </NotFound>
+        </Router>
+    </MudRTLProvider>
+</CascadingAuthenticationState>
+
+@code {
+    public static MudTheme AppTheme = new MudTheme
+    {
+        PaletteLight = new PaletteLight { Primary = "#1e6060" }
+    };
+
+    protected override void OnInitialized()
+    {
+        navigationManager.LocationChanged += OnLocationChanged;
+    }
+
+    private async void OnLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        await jSRuntime.InvokeVoidAsync("scrollToTop");
+    }
+
+    public void Dispose()
+    {
+        navigationManager.LocationChanged -= OnLocationChanged;
+    }
+}

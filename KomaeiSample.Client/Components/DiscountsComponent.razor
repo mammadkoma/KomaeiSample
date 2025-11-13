@@ -1,0 +1,35 @@
+﻿@if (IsAdmin)
+{
+    <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Add" Size="Size.Small" Class="mb-2" OnClick="() => OpenAddEditDialog(null, true)" title="افزودن تخفیف جدید" />
+}
+@if (IsAdmin == false)
+{
+    <MudAlert Severity="Severity.Info" Variant="Variant.Outlined" ContentAlignment="HorizontalAlignment.Right">هر کد تخفیف مربوط به یک دسته میشود و تنها در همان دسته قابل استفاده است. از هر کد تخفیف فقط یک بار میتوانید استفاده کنید.</MudAlert>
+}
+<MudDataGrid Items="DiscountDtos" Filterable=IsAdmin SortMode="IsAdmin? SortMode.Multiple: SortMode.None" FilterCaseSensitivity="DataGridFilterCaseSensitivity.CaseInsensitive" FilterMode="DataGridFilterMode.ColumnFilterMenu" Bordered Hover Dense Striped FixedHeader RowStyleFunc="@_rowStyleFunc" Class="mt-2">
+    <Columns>
+        @if (IsAdmin)
+        {
+            <TemplateColumn Title="عملیات">
+                <CellTemplate>
+                    <MudMenu Icon="@Icons.Material.Filled.MoreVert" Size="Size.Small">
+                        <MudMenuItem IconColor="Color.Info" Icon="@Icons.Material.Filled.Edit" OnClick="@(() => OpenAddEditDialog(context.Item, false))">ویرایش &nbsp;&nbsp;</MudMenuItem>
+                    </MudMenu>
+                </CellTemplate>
+            </TemplateColumn>
+        }
+        <PropertyColumn Property="x => x.CategoryTitle" Title="دسته" />
+        <PropertyColumn Property="x => x.Code" Title="کد تخفیف" />
+        <TemplateColumn Title="درصد تخفیف">
+            <CellTemplate>@("% " + context.Item.Percent)</CellTemplate>
+        </TemplateColumn>
+        <PropertyColumn Property="x => x.MaxPrice" Title="حداکثر مبلغ تخفیف (ریال)" Format="N0" />
+        @if (IsAdmin)
+        {
+            <PropertyColumn Property="x => x.AddUserFullName" Title="کاربر ثبت" />
+            <PropertyColumn Property="x => x.AddDate.ToShamsiDate()" Title="تاریخ ثبت" />
+            <PropertyColumn Property="x => x.UpdateUserFullName" Title="کاربر ویرایش" />
+            <PropertyColumn Property="x => x.UpdateDate.ToShamsiDate()" Title="تاریخ ویرایش" />
+        }
+    </Columns>
+</MudDataGrid>

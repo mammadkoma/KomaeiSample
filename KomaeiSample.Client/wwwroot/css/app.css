@@ -1,0 +1,255 @@
+﻿html, body {
+    height: 100%;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.bg-pr {
+    background-color: #1E6060; /* سبز لوگو - رنگ بک گراند */
+}
+
+.bg-pr2 {
+    background-color: #fecc00; /* زرد لوگو - رنگ بک گراند */
+}
+
+.mud-chip.custom-yellow {
+    background-color: #fecc00 !important; /* کد رنگ دلخواهت */
+    color: black !important; /* رنگ متن */
+}
+
+    .mud-chip.custom-yellow.mud-chip--selected {
+        background-color: #fecc00 !important; /* وقتی انتخاب شده */
+        color: black !important;
+    }
+
+.color-pr {
+    color: #1E6060; /* سبز لوگو - رنگ بک گراند */
+}
+
+.disabled-row { /* سطر غیر فعال در گرید - تغییر رنگ بک گراند */
+    background-color: #ff5e95;
+    color: white;
+}
+
+.text-gray {
+    color: #656565;
+}
+
+.font12 {
+    font-size: 12px !important;
+}
+
+.font14 {
+    font-size: 14px !important;
+}
+
+.font16 {
+    font-size: 16px !important;
+}
+
+.font17 {
+    font-size: 17px !important;
+}
+
+.font18 {
+    font-size: 18px !important;
+}
+
+* {
+    font-family: 'yekanbakhfanum-regular' !important;
+    font-size: 16px;
+}
+
+.mud-input-control-input-container > .mud-input.mud-input-outlined:focus-within .mud-input-outlined-border,
+.mud-input-control-input-container > .mud-input.mud-input-outlined > input:focus ~ .mud-input-outlined-border,
+.mud-input-control-input-container > .mud-input.mud-input-outlined.mud-input-focused .mud-input-outlined-border {
+    border-color: #fecc00 !important; /* زرد لوگو - فوکس بورد ماد تکست فیلد و ماد سلکت */
+}
+
+.column-header {
+    justify-content: center !important; /* وسط چین کردن متن هدر ماددیتاگرید */
+}
+
+.mud-table-cell {
+    /*text-align: center;*/ /* وسط چین کردن متن در سطرهای ماددیتاگرید */
+}
+
+
+.mud-input > input.mud-input-root-outlined.mud-input-root-adorned-start, div.mud-input-slot.mud-input-root-outlined.mud-input-root-adorned-start {
+    padding-left: 1rem !important; /* پدینگ داخلی از چپ اینپوت پسورد چون آیکون چشم داره */
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    min-height: 95vh;
+}
+
+main {
+    flex: 1;
+}
+
+.footer-dark {
+    background-color: #1E6060;
+    color: white;
+}
+
+
+
+.custom-carousel {
+    height: 530px; /* ارتفاع پیش‌فرض برای دسکتاپ */
+}
+
+@media (max-width: 768px) { /* برای موبایل */
+    .custom-carousel {
+        height: 420px; /* ارتفاع جدید برای موبایل */
+    }
+}
+
+.dropdown-item {
+    color: black !important;
+    direction: rtl;
+    text-align-last: start;
+}
+
+.mud-menu-submenu-icon {
+    transform: rotate(180deg);
+}
+
+.mud-swipearea {
+    touch-action: pan-y;
+}
+
+@font-face {
+    font-family: 'yekanbakhfanum-regular';
+    src: url('../yekanbakhfanum-regular.ttf') format('truetype');
+}
+
+@media (max-width: 414px) { /* Mobile */
+    .responsive-width {
+        width: 100%;
+    }
+}
+
+@media (min-width: 1100px) { /* Laptop */
+    .responsive-width {
+        width: 85%;
+    }
+}
+
+@media (min-width: 1800px) { /* PC */
+    .responsive-width {
+        width: 70%;
+    }
+}
+
+h1:focus {
+    outline: none;
+}
+
+a, .btn-link {
+    color: #0071c1;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+.content {
+    padding-top: 1.1rem;
+}
+
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+}
+
+.invalid {
+    outline: 1px solid red;
+}
+
+.validation-message {
+    color: red;
+}
+
+#blazor-error-ui {
+    color-scheme: light only;
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+    #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }
+
+.blazor-error-boundary {
+    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTYiIGhlaWdodD0iNDkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIG92ZXJmbG93PSJoaWRkZW4iPjxkZWZzPjxjbGlwUGF0aCBpZD0iY2xpcDAiPjxyZWN0IHg9IjIzNSIgeT0iNTEiIHdpZHRoPSI1NiIgaGVpZ2h0PSI0OSIvPjwvY2xpcFBhdGg+PC9kZWZzPjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMCkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMzUgLTUxKSI+PHBhdGggZD0iTTI2My41MDYgNTFDMjY0LjcxNyA1MSAyNjUuODEzIDUxLjQ4MzcgMjY2LjYwNiA1Mi4yNjU4TDI2Ny4wNTIgNTIuNzk4NyAyNjcuNTM5IDUzLjYyODMgMjkwLjE4NSA5Mi4xODMxIDI5MC41NDUgOTIuNzk1IDI5MC42NTYgOTIuOTk2QzI5MC44NzcgOTMuNTEzIDI5MSA5NC4wODE1IDI5MSA5NC42NzgyIDI5MSA5Ny4wNjUxIDI4OS4wMzggOTkgMjg2LjYxNyA5OUwyNDAuMzgzIDk5QzIzNy45NjMgOTkgMjM2IDk3LjA2NTEgMjM2IDk0LjY3ODIgMjM2IDk0LjM3OTkgMjM2LjAzMSA5NC4wODg2IDIzNi4wODkgOTMuODA3MkwyMzYuMzM4IDkzLjAxNjIgMjM2Ljg1OCA5Mi4xMzE0IDI1OS40NzMgNTMuNjI5NCAyNTkuOTYxIDUyLjc5ODUgMjYwLjQwNyA1Mi4yNjU4QzI2MS4yIDUxLjQ4MzcgMjYyLjI5NiA1MSAyNjMuNTA2IDUxWk0yNjMuNTg2IDY2LjAxODNDMjYwLjczNyA2Ni4wMTgzIDI1OS4zMTMgNjcuMTI0NSAyNTkuMzEzIDY5LjMzNyAyNTkuMzEzIDY5LjYxMDIgMjU5LjMzMiA2OS44NjA4IDI1OS4zNzEgNzAuMDg4N0wyNjEuNzk1IDg0LjAxNjEgMjY1LjM4IDg0LjAxNjEgMjY3LjgyMSA2OS43NDc1QzI2Ny44NiA2OS43MzA5IDI2Ny44NzkgNjkuNTg3NyAyNjcuODc5IDY5LjMxNzkgMjY3Ljg3OSA2Ny4xMTgyIDI2Ni40NDggNjYuMDE4MyAyNjMuNTg2IDY2LjAxODNaTTI2My41NzYgODYuMDU0N0MyNjEuMDQ5IDg2LjA1NDcgMjU5Ljc4NiA4Ny4zMDA1IDI1OS43ODYgODkuNzkyMSAyNTkuNzg2IDkyLjI4MzcgMjYxLjA0OSA5My41Mjk1IDI2My41NzYgOTMuNTI5NSAyNjYuMTE2IDkzLjUyOTUgMjY3LjM4NyA5Mi4yODM3IDI2Ny4zODcgODkuNzkyMSAyNjcuMzg3IDg3LjMwMDUgMjY2LjExNiA4Ni4wNTQ3IDI2My41NzYgODYuMDU0N1oiIGZpbGw9IiNGRkU1MDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvZz48L3N2Zz4=) no-repeat 1rem/1.8rem, #b32121;
+    padding: 1rem 1rem 1rem 3.7rem;
+    color: white;
+}
+
+    .blazor-error-boundary::after {
+        content: "An error has occurred."
+    }
+
+.loading-progress {
+    position: relative;
+    display: block;
+    width: 8rem;
+    height: 8rem;
+    margin: 20vh auto 1rem auto;
+}
+
+    .loading-progress circle {
+        fill: none;
+        stroke: #e0e0e0;
+        stroke-width: 0.6rem;
+        transform-origin: 50% 50%;
+        transform: rotate(-90deg);
+    }
+
+        .loading-progress circle:last-child {
+            stroke: #1b6ec2;
+            stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 500%;
+            transition: stroke-dasharray 0.05s ease-in-out;
+        }
+
+.loading-progress-text {
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    inset: calc(20vh + 3.25rem) 0 auto 0.2rem;
+}
+
+    .loading-progress-text:after {
+        content: var(--blazor-load-percentage-text, "Loading");
+    }
+
+code {
+    color: #c02d76;
+}
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+    color: var(--bs-secondary-color);
+    text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+    text-align: start;
+}

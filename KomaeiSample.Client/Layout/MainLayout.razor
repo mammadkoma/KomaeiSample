@@ -1,0 +1,38 @@
+﻿@using KomaeiSample.Client.Configs
+@inherits LayoutComponentBase
+
+<CascadingValue Value="this">
+    <MudOverlay ZIndex="9999" @bind-Visible="apiService.IsShowOverlay" DarkBackground="true" AutoClose="false">
+        <MudProgressCircular Color="Color.Secondary" Indeterminate="true" Size="Size.Large" />
+    </MudOverlay>
+
+    <div class="page" id="topPage">
+        <main>
+            <NavMenu UserFullName="@(userFullName?.Length == 0 ? "پروفایل" : "پروفایل کاربر - " + userFullName)" />
+            <article class="container-fluid responsive-width px-2 py-3">
+                @Body
+            </article>
+        </main>
+    </div>
+    <footer class="footer-dark py-4 text-center text-white">
+        <MudGrid Class="py-5" Spacing="0">
+            <MudItem sm="6" xs="12" Class="py-5">
+                <MudStack>
+                    @* <div class="mx-3">
+                        <a href="/" class="text-decoration-none text-white">خانه</a>
+                    </div> *@
+                    <AuthorizeView>
+                        <Authorized>
+                            <div class="mx-3">
+                                <a href="UserProfile" class="text-decoration-none text-white">@(userFullName?.Length == 0 ? "پروفایل" : userFullName)</a>
+                            </div>
+                        </Authorized>
+                    </AuthorizeView>
+                </MudStack>
+            </MudItem>
+            <MudItem sm="6" xs="12" Class="py-5">
+
+            </MudItem>
+        </MudGrid>
+    </footer>
+</CascadingValue>

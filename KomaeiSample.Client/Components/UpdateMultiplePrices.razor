@@ -1,0 +1,31 @@
+﻿<MudDialog DefaultFocus="DefaultFocus.FirstChild">
+    <DialogContent>
+        <EditForm Model="vm" OnValidSubmit="OnValidSubmit">
+            <DataAnnotationsValidator />
+            <MudGrid Class="mb-10 mt-1">
+                <MudItem Style="display: flex; align-items: center;">
+                    <MudChipSet T="UpdateMultiplePriceType" @bind-SelectedValue="vm.UpdateMultiplePriceType" CheckMark SelectionMode="SelectionMode.SingleSelection" Color="Color.Info">
+                        <MudChip Value="@UpdateMultiplePriceType.Price" Variant="Variant.Outlined">مبلغی</MudChip>
+                        <MudChip Value="@UpdateMultiplePriceType.Percent" Variant="Variant.Outlined">درصدی</MudChip>
+                    </MudChipSet>
+                </MudItem>
+                <MudItem>
+                    @if (vm.UpdateMultiplePriceType == UpdateMultiplePriceType.Price)
+                    {
+                        <MudNumericField T="decimal?" Label="قیمت (ریال) افزایش" @bind-Value="vm.Price" For="@(() => vm.Price)" MaxLength="18" Max="999999999999999999" Format="N0" Variant="Variant.Outlined" dir="ltr" HideSpinButtons FullWidth />
+                    }
+                    @if (vm.UpdateMultiplePriceType == UpdateMultiplePriceType.Percent)
+                    {
+                        <MudNumericField T="decimal?" Label="درصد افزایش" @bind-Value="vm.Percent" For="@(() => vm.Percent)" MaxLength="3" Format="N0" Variant="Variant.Outlined" dir="ltr" HideSpinButtons FullWidth />
+                    }
+                </MudItem>
+            </MudGrid>
+            <MudButton Color="Color.Success" Variant="Variant.Filled" ButtonType="ButtonType.Submit" Class="my-2" Style="width: 92px;">
+                ذخیره
+            </MudButton>
+            <MudButton Severity="Severity.Normal" Variant="Variant.Filled" OnClick="() => MudDialog.Cancel()" Class="ms-5" Style="width: 92px;">
+                انصراف
+            </MudButton>
+        </EditForm>
+    </DialogContent>
+</MudDialog>

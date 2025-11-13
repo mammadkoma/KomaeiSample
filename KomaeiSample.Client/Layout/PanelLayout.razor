@@ -1,0 +1,44 @@
+﻿@using KomaeiSample.Client.Configs
+@inherits LayoutComponentBase
+
+<CascadingValue Value="this">
+    <MudLayout>
+        <MudOverlay ZIndex="9999" @bind-Visible="apiService.IsShowOverlay" DarkBackground="true" AutoClose="false">
+            <MudProgressCircular Color="Color.Secondary" Indeterminate="true" Size="Size.Large" />
+        </MudOverlay>
+        <MudAppBar Elevation="2">
+            <MudIconButton Icon="@Icons.Material.Outlined.Menu" Style="color:white" OnClick="() => drawerOpen = !drawerOpen" Edge="Edge.End" />
+            <MudSpacer />
+            <MudTooltip Text="@todayTooltip" Placement="Placement.Bottom" Arrow="true" Style="font-size:14px">
+                <MudText Style="color:white">@today</MudText>
+            </MudTooltip>
+            <MudSpacer />
+            <MudIconButton Href="/" title="بازگشت به خانه" Icon="@Icons.Material.Filled.KeyboardReturn" Style="background-color:white" Size="Size.Small"></MudIconButton>
+        </MudAppBar>
+        <MudDrawer @bind-Open="drawerOpen" Elevation="2">
+            <MudDrawerHeader>
+                <MudText Typo="Typo.h6" Class="mt-1" id="topPage">بانک سپه</MudText>
+                <MudSpacer />
+                <MudIcon Icon="@Icons.Material.Outlined.MailOutline" Size="Size.Large" Color="Color.Primary"></MudIcon>
+            </MudDrawerHeader>
+            <PanelNavMenu UserFullName="@userFullName" />
+        </MudDrawer>
+        <MudMainContent>
+            <MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="my-2">
+                <ErrorBoundary @ref="errorBoundary">
+                    <ChildContent>
+                        @Body
+                    </ChildContent>
+                    <ErrorContent Context="ex">
+                        @Body
+                        @{
+                            if (ex.Message.Contains("status code"))
+                                Console.WriteLine(ex.Message);
+                            else snackbar.Add(ex.Message, Severity.Error);
+                        }
+                    </ErrorContent>
+                </ErrorBoundary>
+            </MudContainer>
+        </MudMainContent>
+    </MudLayout>
+</CascadingValue>

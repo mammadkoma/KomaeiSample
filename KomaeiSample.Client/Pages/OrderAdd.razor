@@ -1,0 +1,30 @@
+﻿@page "/OrderAdd/{CategoryId:int}/{ModelId:int}"
+@if (CategoryId > 0)
+{
+    <PageHeader Title=@($"سفارش آنلاین {((CategoriesEnum)CategoryId).GetDescription()}") Icon="@Icons.Material.Filled.MailOutline" />
+
+    @if (CategoryId == CategoriesEnum.Office.ToInt())
+    {
+        <div Class="mb-8">
+            <AddOrderOffice @key="EnvelopeOffices" EnvelopeOffices="EnvelopeOffices" CategoryId="CategoryId" ModelId="ModelId" />
+        </div>
+    }
+    else if (CategoryId == CategoriesEnum.Hospital.ToInt())
+    {
+        <div Class="mb-8">
+            <AddOrderHospital @key="EnvelopeHospitals" EnvelopeHospitals="EnvelopeHospitals" CategoryId="CategoryId" ModelId="ModelId" />
+        </div>
+    }
+    else if (CategoryId == CategoriesEnum.HandBag.ToInt())
+    {
+        <div Class="mb-8">
+            <AddOrderHandBag @key="EnvelopeHandBags" EnvelopeHandBags="EnvelopeHandBags" CategoryId="CategoryId" ModelId="ModelId" />
+        </div>
+    }
+    else if (CategoryId == CategoriesEnum.Confidential.ToInt())
+    {
+        <div Class="mb-8">
+            <AddOrderConfidential @key="EnvelopeConfidentials" EnvelopeConfidentials="EnvelopeConfidentials" CategoryId="CategoryId" ModelId="ModelId" />
+        </div>
+    }
+}

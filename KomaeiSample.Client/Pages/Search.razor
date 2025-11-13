@@ -1,0 +1,8 @@
+﻿@page "/Search/{searchText?}"
+<PageHeader Title="جستجو" Icon="@Icons.Material.Filled.Search" />
+
+<OnlineComponent SearchText="@SearchText" />
+
+@code {
+    [Parameter] public string SearchText { get; set; } = string.Empty;
+}

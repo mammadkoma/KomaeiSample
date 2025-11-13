@@ -1,0 +1,31 @@
+﻿@page "/UserRewardAmount"
+@layout PanelLayout
+
+<MudGrid Justify="Justify.Center" Class="pt-20">
+    <MudAlert Severity="Severity.Info" Elevation="0" Class="mb-6">
+        مبلغ افزودن به کیف پول بابت عضویت و خرید زیر مجموعه به معرف
+    </MudAlert>
+</MudGrid>
+
+<MudGrid Justify="Justify.Center" Class="pt-5">
+    <MudItem sm="3" xs="12">
+        <EditForm Model="vm" OnValidSubmit="OnValidSubmit">
+            <DataAnnotationsValidator />
+            <MudHidden @bind-Value="vm!.Id" />
+
+            <MudNumericField T="decimal" Label="مبلغ جایزه (ریال) * "
+                             @bind-Value="vm.Value" For="@(() => vm.Value)"
+                             Min="1" MaxLength="18" Max="999999999999999999"
+                             Format="N0" Variant="Variant.Outlined"
+                             dir="ltr" HideSpinButtons OnlyValidateIfDirty Class="my-5" />
+
+            <MudGrid Justify="Justify.Center" Class="mt-8">
+                <MudItem sm="3" xs="5">
+                    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" FullWidth="true" Size="Size.Large">
+                        ذخیره
+                    </MudButton>
+                </MudItem>
+            </MudGrid>
+        </EditForm>
+    </MudItem>
+</MudGrid>

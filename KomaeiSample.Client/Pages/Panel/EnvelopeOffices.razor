@@ -1,0 +1,37 @@
+﻿@page "/EnvelopeOffices"
+@layout PanelLayout
+<PageTitle>@($"قیمت گذاری {CategoriesEnum.Office.GetDescription()}")</PageTitle>
+
+<MudGrid Justify="Justify.SpaceBetween">
+    <MudItem>
+        <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Add" Size="Size.Small" Class="mb-2" OnClick="() => OpenAddEditDialog(null, true)" title="افزودن مورد جدید" />
+    </MudItem>
+    <MudItem>
+        <MudButton Color="Color.Info" Variant="Variant.Outlined" OnClick="OpenUpdateMultiplePricesDialog">
+            ویرایش دسته ای قیمت
+        </MudButton>
+    </MudItem>
+</MudGrid>
+
+<MudDataGrid Items="EnvelopeOfficeDtos" Filterable FilterCaseSensitivity="DataGridFilterCaseSensitivity.CaseInsensitive" FilterMode="DataGridFilterMode.ColumnFilterMenu" Bordered Hover Dense Striped FixedHeader RowStyleFunc="@_rowStyleFunc">
+    <Columns>
+        <TemplateColumn Title="عملیات">
+            <CellTemplate>
+                <MudMenu Icon="@Icons.Material.Filled.MoreVert" Size="Size.Small">
+                    <MudMenuItem IconColor="Color.Info" Icon="@Icons.Material.Filled.Edit" OnClick="@(() => OpenAddEditDialog(context.Item, false))">ویرایش &nbsp;&nbsp;</MudMenuItem>
+                </MudMenu>
+            </CellTemplate>
+        </TemplateColumn>
+        <PropertyColumn Property="x => x.ModelTitle" Title="مدل" />
+        <PropertyColumn Property="x => x.PaperTitle" Title="کاغذ" />
+        <PropertyColumn Property="x => x.GrammageTitle" Title="گرماژ" />
+        <PropertyColumn Property="x => x.CountTitle" Title="تعداد" />
+        <PropertyColumn Property="x => x.HasInternalTeram.ToHasOrNotTitle()" Title="ترام داخلی 50% طوسی" />
+        <PropertyColumn Property="x => x.HasDoorGlue.ToHasOrNotTitle()" Title="چسب درب" />
+        <PropertyColumn Property="x => x.Price" Title="قیمت (ریال)" Format="#,0" />
+        <PropertyColumn Property="x => x.AddUserFullName" Title="کاربر ثبت" />
+        <PropertyColumn Property="x => x.AddDate.ToShamsiDate()" Title="تاریخ ثبت" />
+        <PropertyColumn Property="x => x.UpdateUserFullName" Title="کاربر ویرایش" />
+        <PropertyColumn Property="x => x.UpdateDate.ToShamsiDate()" Title="تاریخ ویرایش" />
+    </Columns>
+</MudDataGrid>

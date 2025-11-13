@@ -1,0 +1,101 @@
+﻿@page "/EnvelopeHospitalAddEdit"
+
+<MudDialog DefaultFocus="DefaultFocus.FirstChild">
+    <DialogContent>
+        <EditForm Model="vm" OnValidSubmit="OnValidSubmit">
+            <DataAnnotationsValidator />
+
+            <MudGrid>
+                @if (IsAdd == true)
+                {
+                    <MudItem xs="12" sm="6">
+                        <MudSelect T="int?" Label="مدل * " @bind-Value="vm.ModelId" @bind-Value:after="OnModelChange" For="@(() => vm.ModelId)" Variant="Variant.Outlined">
+                            @foreach (var item in models!)
+                            {
+                                <MudSelectItem T="int?" Value="@((int?)item.Id)">@item.Title</MudSelectItem>
+                            }
+                        </MudSelect>
+                    </MudItem>
+                    @if (vm.ModelId > 0)
+                    {
+                        <MudItem xs="12" sm="12" Class="border rounded p-2">
+                            <MudText>قالب * </MudText>
+                            <MudGrid Class="mt-1">
+                                @foreach (var item in hospitalTemplatesForShow!)
+                                {
+                                    <MudItem xs="12" sm="3">
+                                        <MudCard Elevation="2" Style="@GetCardStyle(item.Id)">
+                                            <MudCardMedia Image=@($"Uploads/HospitalTemplate/{item.FileName}") />
+                                            <MudCardActions>
+                                                <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="w-25 mb-2" OnClick="() => vm.HospitalTemplateId = item.Id">
+                                                    انتخاب
+                                                </MudButton>
+                                                <MudSpacer />
+                                                <MudButton Variant="Variant.Filled" Class="bg-pr2 w-25" OnClick="() => OpenShowImageDialog(item)">
+                                                    نمایش
+                                                </MudButton>
+                                            </MudCardActions>
+                                        </MudCard>
+                                    </MudItem>
+                                }
+                            </MudGrid>
+                        </MudItem>
+                    }
+                    <MudItem xs=12 sm=6>
+                        <MudSelect T="int?" Label="کاغذ * " @bind-Value="vm.PaperId" For="@(() => vm.PaperId)" Variant="Variant.Outlined">
+                            @foreach (var item in papers!)
+                            {
+                                <MudSelectItem Value="@((int?)item.Id)">@item.Title</MudSelectItem>
+                            }
+                        </MudSelect>
+                    </MudItem>
+                    <MudItem xs=12 sm=6>
+                        <MudSelect T="int?" Label="گرماژ * " @bind-Value="vm.GrammageId" For="@(() => vm.GrammageId)" Variant="Variant.Outlined">
+                            @foreach (var item in grammages!)
+                            {
+                                <MudSelectItem Value="@((int?)item.Id)">@item.Title</MudSelectItem>
+                            }
+                        </MudSelect>
+                    </MudItem>
+                    <MudItem xs=12 sm=6>
+                        <MudSelect T="int?" Label="تعداد * " @bind-Value="vm.CountId" For="@(() => vm.CountId)" Variant="Variant.Outlined">
+                            @foreach (var item in counts!)
+                            {
+                                <MudSelectItem Value="@((int?)item.Id)">@item.Title</MudSelectItem>
+                            }
+                        </MudSelect>
+                    </MudItem>
+                    <MudItem xs=12 sm=6>
+                        <MudSelect T="int?" Label="سلفون * " @bind-Value="vm.CellophaneId" For="@(() => vm.CellophaneId)" Variant="Variant.Outlined">
+                            @foreach (var item in cellophanes!)
+                            {
+                                <MudSelectItem Value="@((int?)item.Id)">@item.Title</MudSelectItem>
+                            }
+                        </MudSelect>
+                    </MudItem>
+                    <MudItem xs=12 sm=6>
+                        <MudSelect T="int?" Label="یو وی * " @bind-Value="vm.UvId" For="@(() => vm.UvId)" Variant="Variant.Outlined">
+                            @foreach (var item in uvs!)
+                            {
+                                <MudSelectItem Value="@((int?)item.Id)">@item.Title</MudSelectItem>
+                            }
+                        </MudSelect>
+                    </MudItem>
+                }
+                <MudItem xs=12 sm=6>
+                    <MudNumericField T="decimal?" Label="قیمت (ریال) * " @bind-Value="vm.Price" For="@(() => vm.Price)" Min="1" MaxLength="18" Max="999999999999999999" Format="N0" Variant="Variant.Outlined" dir="ltr" HideSpinButtons />
+                </MudItem>
+                <MudItem xs=12 sm=6>
+                    <MudSwitch @bind-Value="vm.Disable" Label="غیر فعال" Color="Color.Secondary" Class="@(IsAdd == true ? "mb-4" : "mt-3")" />
+                </MudItem>
+            </MudGrid>
+
+            <MudButton Color="Color.Success" Variant="Variant.Filled" ButtonType="ButtonType.Submit" Class="my-2" Style="width: 92px;">
+                ذخیره
+            </MudButton>
+            <MudButton Severity="Severity.Normal" Variant="Variant.Filled" OnClick="() => MudDialog.Cancel()" Class="ms-5">
+                انصراف
+            </MudButton>
+        </EditForm>
+    </DialogContent>
+</MudDialog>

@@ -1,0 +1,9 @@
+﻿.custom-carousel {
+    height: 530px; /* ارتفاع پیش‌فرض برای دسکتاپ */
+}
+
+@media (max-width: 768px) { /* برای موبایل */
+    .custom-carousel {
+        height: 420px; /* ارتفاع جدید برای موبایل */
+    }
+}

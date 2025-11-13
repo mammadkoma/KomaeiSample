@@ -1,0 +1,33 @@
+﻿<MudDialog DefaultFocus="DefaultFocus.FirstChild">
+    <DialogContent>
+        <MudForm @ref="form" Model="vm" Class="col-md-8 mx-auto">
+            <MudGrid Justify="Justify.Center">
+                <MudItem xs="12" sm="12">
+                    <MudTextField Label="نام قالب" @bind-Value="vm!.TemplateName" For="@(() => vm!.TemplateName)" Variant="Variant.Outlined" OnlyValidateIfDirty Required RequiredError="@Constants.RequireMsg" MaxLength="50" />
+                </MudItem>
+                <MudItem xs="12" sm="12">
+                    <MudFileUpload T="IBrowserFile" @bind-Files="vm.File" For="@(() => vm.File)" SuppressOnChangeWhenInvalid Accept=".jpg,.jpeg" OnFilesChanged="OnFilesChanged" Required RequiredError="@Constants.RequireMsg">
+                        <ActivatorContent>
+                            <MudButton Variant="Variant.Filled" Color="Color.Default" StartIcon="@Icons.Material.Filled.CloudUpload" FullWidth>
+                                انتخاب تصویر - 300KB - jpg
+                            </MudButton>
+                        </ActivatorContent>
+                    </MudFileUpload>
+                    @if (previewImageUrl.IsNullOrEmpty() == false)
+                    {
+                        <MudGrid Justify="Justify.Center">
+                            <MudItem><MudImage Src="@previewImageUrl" Fluid Class="mt-2 rounded" /></MudItem>
+                        </MudGrid>
+                    }
+                    <MudGrid Justify="Justify.Center" Class="mt-3">
+                        <MudItem xs="6">
+                            <MudButton OnClick="Submit" Variant="Variant.Filled" Class="mb-4 mt-1" Color="Color.Success" FullWidth="true" Size="Size.Large" Disabled="vm.File == null">
+                                ذخیره
+                            </MudButton>
+                        </MudItem>
+                    </MudGrid>
+                </MudItem>
+            </MudGrid>
+        </MudForm>
+    </DialogContent>
+</MudDialog>

@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+
+    <title>بانک سپه</title>
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link href="KomaeiSample.Client.styles.css" rel="stylesheet" />
+    <link href="manifest.webmanifest" rel="manifest" />
+    <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
+    <script src="lib/lottie.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div id="custom-loader" style="position: fixed;inset: 0;z-index: 9999;background: white;display: flex;flex-direction: column;justify-content: center;align-items: center;text-align: center;">
+            <img src="favicon.png" alt="Logo" style="width:150px" />
+            <div id="lottie" style="height:200px;width:300px"></div>
+            <div id="persian-date-line1" style="min-height: 30px; color: #2c2c2c"></div>
+            <div id="persian-date-line2" style="margin-top: 5px; min-height: 30px; color: #2c2c2c"></div>
+        </div>
+    </div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="." class="reload">Reload</a>
+        <span class="dismiss">🗙</span>
+    </div>
+    <script src="app.js"></script>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script>
+        lottie.loadAnimation({
+            container: document.getElementById('lottie'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'LottieFiles/loading.json'
+        });
+    </script>
+    <script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="_content/MudBlazor/MudBlazor.min.js"></script>
+    <script src="Layout/NavMenu.razor.js" type="module"></script>
+    <script>
+        // register service worker (production file will be service-worker.js)
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(reg => console.info('SW registered', reg))
+                .catch(err => console.warn('SW registration failed:', err));
+
+            // Listen for messages from SW (SW will post NEW_VERSION_AVAILABLE)
+            navigator.serviceWorker.addEventListener('message', event => {
+                if (!event.data) return;
+                if (event.data.type === 'NEW_VERSION_AVAILABLE') {
+                    // Immediate reload so updated CSS/JS/wasm take effect.
+                    // Option: instead of immediate reload you can show a toast/button to the user.
+                    console.info('New version available — reloading page to apply updates.');
+                    window.location.reload();
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

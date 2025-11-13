@@ -1,0 +1,43 @@
+﻿<div class="border-warning mt-md-1 mx-md-2 p-md-2 mx-0 mb-6 mt-6 rounded border py-1">
+    <MudGrid Justify="Justify.Center" Class="rounded-xl">
+        <MudItem sm="6" xs="12" Class="mud-typography-align-center">
+            <MudText Class="fw-bold mt-3">کد معرف من : @_userRewardProfileDto.ReferrerUserReferralCode</MudText>
+            <MudText Class="font14 mb-3">(برای اینکه دیگران با کد معرف من ثبت نام کنند)</MudText>
+            @if (_userRewardProfileDto.ReferredUserFullNameReferralCode != null && _userRewardProfileDto.ReferredUserFullNameReferralCode.Length > 0)
+            {
+                <MudText Class="my-3">من با کد معرف این شخص ثبت نام کرده ام : @_userRewardProfileDto.ReferredUserFullNameReferralCode</MudText>
+            }
+        </MudItem>
+    </MudGrid>
+    @if (_referredUsers.Length > 0)
+    {
+        <MudText Class="ms-1">افرادی که با کد معرف من ثبت نام کرده اند : </MudText>
+        <MudDataGrid Items="_referredUsers" SortMode="SortMode.None" Bordered Hover Dense Striped FixedHeader Class="mx-1 mb-1 mt-2">
+            <Columns>
+                <PropertyColumn Property="x => x.ReferredUserFullName" Title="نام" />
+                <PropertyColumn Property="x => x.ReferredUserMobile" Title="موبایل" />
+
+                @* <PropertyColumn Property="x => x.amou" Title="حداکثر مبلغ تخفیف (ریال)" Format="N0" /> *@
+                <PropertyColumn Property="x => x.AddDate.ToShamsiDate()" Title="تاریخ ثبت نام" />
+            </Columns>
+        </MudDataGrid>
+    }
+</div>
+
+<div class="border-warning mt-md-2 mx-md-2 p-md-2 mx-0 mb-2 rounded border py-1">
+    <MudText Class="fw-bold mud-typography-align-center my-3">موجودی کیف پول من : @_userRewardProfileDto.WalletBalance.ToString("N0") ریال</MudText>
+    @if (_userRewardProfileDto.UserRewardDtos!.Length > 0)
+    {
+        <MudText Class="ms-1">واریزی ها به کیف پول من : </MudText>
+        <MudDataGrid Items="_userRewardProfileDto.UserRewardDtos" SortMode="SortMode.None" Bordered Hover Dense Striped FixedHeader Class="mx-1 mb-1 mt-2">
+            <Columns>
+                <PropertyColumn Property="x => x.ReferredUserFullName" Title="نام" />
+                <PropertyColumn Property="x => x.ReferredUserMobile" Title="موبایل" />
+                <PropertyColumn Property="x => ((UserRewardTypes)x.UserRewardTypeId).GetDescription()" Title="بابت" />
+                <PropertyColumn Property="x => x.Amount" Title="مبلغ (ریال)" Format="N0" />
+                <PropertyColumn Property="x => x.AddDate.ToShamsiDate()" Title="تاریخ" />
+                <PropertyColumn Property="@(x => x.UserRewardTypeId == UserRewardTypes.Register.ToInt() ? "ثبت نام" : x.Desc)" Title="توضیحات" />
+            </Columns>
+        </MudDataGrid>
+    }
+</div>
