@@ -1,7 +1,8 @@
 ﻿namespace KomaeiSample.Server.Controllers;
+
 [Route("api/[controller]/[action]")]
 [ApiController]
-[Authorize]
+//[Authorize]
 public class AppController : ControllerBase
 {
 

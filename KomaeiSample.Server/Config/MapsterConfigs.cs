@@ -12,7 +12,7 @@ public static class MapsterConfigs
         //.Map(dest => dest.HasDoorGlueTitle, src => src.Envelope.HasDoorGlue == 1 ? "دارد" : "ندارد")
         //;
 
-        TypeAdapterConfig<User, UserDto>.NewConfig()
-        .Map(dest => dest.OrdersCount, src => src.OrderAddUsers.Where(x => x.OrderStatusId != OrderStatusesEnum.Card.ToInt()).Count());
+        //TypeAdapterConfig<User, UserDto>.NewConfig()
+        //.Map(dest => dest.OrdersCount, src => src.OrderAddUsers.Where(x => x.OrderStatusId != OrderStatusesEnum.Card.ToInt()).Count());
     }
 }

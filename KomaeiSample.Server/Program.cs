@@ -2,7 +2,6 @@
 
 builder.Services.AddControllers().AddBadRequestHandler(); //
 builder.Services.AddRazorPages();
-builder.Services.AddJwt(); //
 builder.Services.AddHttpContextAccessor(); //
 // LocalDbConnectionString - LocalDbConnectionString2 - ServerConnectionString
 builder.Services.AddDataBase(builder.Configuration.GetConnectionString("LocalDbConnectionString")!);

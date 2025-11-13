@@ -1,0 +1,12 @@
+﻿@page "/"
+<PageTitle>محصولات</PageTitle>
+
+<MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Add" Size="Size.Small" Class="mb-2" OnClick="() => OpenAddDialog(null)" title="افزودن" />
+<MudDataGrid Items="ProductDtos" Bordered Hover Dense Striped Elevation="4">
+    <Columns>
+        <PropertyColumn Property="x => x.Id" Hidden />
+        <PropertyColumn Property="x => x.CategoryTitle" Title="دسته" />
+        <PropertyColumn Property="x => x.Title" Title="عنوان" />
+        <PropertyColumn Property="x => x.Price" Title="قیمت" Format="N0" />
+    </Columns>
+</MudDataGrid>

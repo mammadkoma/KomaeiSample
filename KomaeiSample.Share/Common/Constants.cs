@@ -1,4 +1,5 @@
 ﻿namespace KomaeiSample.Share.Common;
+
 public class Constants
 {
     // Validation Error Message

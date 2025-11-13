@@ -1,0 +1,57 @@
+﻿<MudDialog DefaultFocus="DefaultFocus.FirstChild">
+    <DialogContent>
+        <EditForm Model="vm" OnValidSubmit="OnValidSubmit">
+            <DataAnnotationsValidator />
+            <MudGrid>
+                <MudItem xs="12" sm="6">
+                    <MudSelect T="int?" Label="دسته *" @bind-Value="vm.CategoryId" For="@(() => vm.CategoryId)" Variant="Variant.Outlined">
+                        @if (CategoryDtos != null && CategoryDtos.Length > 0)
+                        {
+                            @foreach (var item in CategoryDtos!)
+                            {
+                                <MudSelectItem Value="@((int?)item.Id)">@item.Title</MudSelectItem>
+                            }
+                        }
+                    </MudSelect>
+                </MudItem>
+
+                <MudItem xs="12" sm="6">
+                    <MudTextField Label="عنوان *"
+                                  @bind-Value="vm.Title"
+                                  For="@(() => vm.Title)"
+                                  Variant="Variant.Outlined" />
+                </MudItem>
+
+                <MudItem xs="12" sm="6">
+                    <MudNumericField T="decimal?"
+                                     Label="قیمت (ریال)"
+                                     @bind-Value="vm.Price"
+                                     For="@(() => vm.Price)"
+                                     Min="1"
+                                     Format="N0"
+                                     Variant="Variant.Outlined"
+                                     dir="ltr"
+                                     HideSpinButtons />
+                </MudItem>
+
+                <MudItem xs="12" sm="6">
+                    <MudFileUpload T="IBrowserFile" @bind-Files="vm.File" For="@(() => vm.File)" SuppressOnChangeWhenInvalid Accept=".png,.jpg,.jpeg">
+                        <ActivatorContent>
+                            <MudButton Variant="Variant.Filled" Color="Color.Default" StartIcon="@Icons.Material.Filled.CloudUpload" FullWidth Class="mt-3">
+                                انتخاب تصویر محصول * (حداکثر 300 KB)
+                            </MudButton>
+                        </ActivatorContent>
+                    </MudFileUpload>
+                </MudItem>
+            </MudGrid>
+
+            <MudDivider Class="my-4" />
+
+            <MudGrid Justify="Justify.Center">
+                <MudButton Color="Color.Success" Variant="Variant.Filled" ButtonType="ButtonType.Submit" Class="mx-2 my-8" Style="width:120px">
+                    ذخیره
+                </MudButton>
+            </MudGrid>
+        </EditForm>
+    </DialogContent>
+</MudDialog>
