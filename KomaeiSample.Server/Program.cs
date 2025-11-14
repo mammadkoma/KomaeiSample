@@ -1,4 +1,6 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using KomaeiSample.Server.Middleware;
+
+var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers().AddBadRequestHandler(); //
 builder.Services.AddRazorPages();
@@ -18,6 +20,10 @@ CultureInfo.DefaultThreadCurrentCulture = culture;
 CultureInfo.DefaultThreadCurrentUICulture = culture;
 
 var app = builder.Build();
+
+var privatePem = File.ReadAllText(Path.Combine(app.Environment.ContentRootPath, "private.pem"));
+app.UseDecryptRequest(privatePem); //
+
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
 app.UseRouting();
