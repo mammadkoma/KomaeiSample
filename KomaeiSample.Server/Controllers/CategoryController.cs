@@ -8,10 +8,21 @@ public class CategoryController(CategoryService categoryService) : AppController
         return Ok(await categoryService.GetAll());
     }
 
-    //[HttpPost]
-    //[Authorize(Roles = $"{Constants.AdminRole},{Constants.SuperAdminRole}")]
-    //public async Task<ActionResult> Edit([FromForm] CategoryVm vm, [FromForm] IFormFile? file)
-    //{
-    //    return Ok(await categoryService.Edit(vm, file));
-    //}
+    [HttpPost]
+    public async Task<ActionResult> Add(CategoryAddEditVm vm)
+    {
+        return Ok(await categoryService.Add(vm));
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> Edit(CategoryAddEditVm vm)
+    {
+        return Ok(await categoryService.Edit(vm));
+    }
+
+    [HttpDelete]
+    public async Task<ActionResult> Delete(int id)
+    {
+        return Ok(await categoryService.Delete(id));
+    }
 }

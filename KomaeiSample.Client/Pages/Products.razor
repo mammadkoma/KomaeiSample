@@ -1,7 +1,7 @@
-﻿@page "/"
+﻿@page "/Products"
 <PageTitle>محصولات</PageTitle>
 
-<MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Add" Size="Size.Small" Class="mb-2" OnClick="() => OpenAddDialog(null)" title="افزودن" />
+<MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Add" Size="Size.Small" Class="mb-2" OnClick="() => OpenAddEditDialog(null)" title="افزودن" />
 <MudDataGrid Items="ProductDtos" Bordered Hover Dense Striped Elevation="4">
     <Columns>
         <PropertyColumn Property="x => x.Id" Hidden />

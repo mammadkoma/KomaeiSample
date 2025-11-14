@@ -1,0 +1,22 @@
+﻿<MudDialog>
+    <DialogContent>
+        <EditForm Model="vm" OnValidSubmit="OnValidSubmit">
+            <DataAnnotationsValidator />
+            <MudGrid>
+                <MudItem xs="12" sm="12">
+                    <MudHidden @bind-Value="vm!.Id" />
+                    <MudTextField Label="عنوان * " @bind-Value="vm!.Title" For="@(() => vm!.Title)" Variant="Variant.Outlined" MaxLength="50" OnlyValidateIfDirty />
+                </MudItem>
+            </MudGrid>
+
+            <MudStack Row Class="mb-2 mt-5">
+                <MudButton Color="Color.Primary" Variant="Variant.Filled" ButtonType="ButtonType.Submit" Style="width: 92px;">
+                    ذخیره
+                </MudButton>
+                <MudButton Color="Color.Secondary" Variant="Variant.Filled" OnClick="() => MudDialog.Cancel()" Class="ms-5">
+                    انصراف
+                </MudButton>
+            </MudStack>
+        </EditForm>
+    </DialogContent>
+</MudDialog>

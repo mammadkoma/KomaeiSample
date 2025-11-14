@@ -1,0 +1,17 @@
+﻿@page "/"
+<PageTitle>دسته ها</PageTitle>
+
+<MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Add" Size="Size.Small" Class="mb-2" OnClick="() => OpenAddEditDialog(null)" title="افزودن" />
+<MudDataGrid Items="CategoryDtos" Bordered Hover Dense Striped Elevation="4">
+    <Columns>
+        <TemplateColumn Title="عملیات">
+            <CellTemplate>
+                <MudMenu Icon="@Icons.Material.Filled.MoreVert" Size="Size.Small">
+                    <MudMenuItem IconColor="Color.Info" Icon="@Icons.Material.Filled.Edit" OnClick="@(() => OpenAddEditDialog(context.Item))">ویرایش &nbsp;&nbsp</MudMenuItem>
+                    <MudMenuItem IconColor="Color.Error" Icon="@Icons.Material.Filled.Delete" OnClick="@(() => Delete(context.Item))">حذف &nbsp;&nbsp;</MudMenuItem>
+                </MudMenu>
+            </CellTemplate>
+        </TemplateColumn>
+        <PropertyColumn Property="x => x.Title" Title="عنوان" HeaderStyle="min-width:100px" />
+    </Columns>
+</MudDataGrid>

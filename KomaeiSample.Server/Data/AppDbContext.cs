@@ -22,7 +22,6 @@ public partial class AppDbContext : DbContext
         {
             entity.ToTable("Category");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.Title).HasMaxLength(50);
         });
 

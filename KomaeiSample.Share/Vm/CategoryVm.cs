@@ -1,8 +1,11 @@
 ﻿namespace KomaeiSample.Share.Vm;
-public partial class CategoryVm
+
+public partial class CategoryAddEditVm
 {
-    [Required(ErrorMessage = Constants.RequireMsg)]
     public int? Id { get; set; }
 
-    public IBrowserFile? File { get; set; }
+    [Required(ErrorMessage = Constants.RequireMsg)]
+    [MinLength(2, ErrorMessage = Constants.MinLengthMsg)]
+    [MaxLength(50, ErrorMessage = Constants.MaxLengthMsg)]
+    public string Title { get; set; } = string.Empty;
 }

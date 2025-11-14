@@ -24,7 +24,7 @@ public class Constants
     //public const string MobileClaim = "m";
 
     // Jwt
-    public const string JwtSecretKey = "HyperP@kat$Security!KeY^ThisMustBeAtLeast32Characters";
+    public const string JwtSecretKey = "asdfghjkl";
     public const int JwtExpireDays = 14;
     public const int JwtRefreshDays = 3;
 
@@ -42,8 +42,4 @@ public class Constants
     public const string TehranAreaWest = "غرب";
     public const string TehranAreaEast = "شرق";
     public const string TehranAreaCenter = "مرکز";
-
-    // Pay - zibal
-    public const string Merchant = "68455402a45c72000f0412a9";
-    //public const string Merchant = "zibal"; // for test
 }

@@ -3,6 +3,7 @@ global using KomaeiSample.Client.Configs;
 global using KomaeiSample.Share.Common;
 global using KomaeiSample.Share.Dto;
 global using KomaeiSample.Share.Vm;
+global using Mapster;
 global using Microsoft.AspNetCore.Components;
 global using Microsoft.AspNetCore.Components.Authorization;
 global using Microsoft.AspNetCore.Components.Web;

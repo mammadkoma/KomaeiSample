@@ -42,7 +42,7 @@ public partial class ProductAddEdit
 
         if (vm.File is not null)
         {
-            var fileStream = vm.File.OpenReadStream(10_000_000); // تا 10MB
+            var fileStream = vm.File.OpenReadStream(10_000_000);
             var fileContent = new StreamContent(fileStream);
             content.Add(fileContent, nameof(vm.FileForServer), vm.File.Name);
         }
@@ -55,8 +55,6 @@ public partial class ProductAddEdit
             MudDialog.Close(DialogResult.Ok(true));
         }
         else
-        {
             snackbar.Add("خطا در ذخیره اطلاعات", Severity.Error);
-        }
     }
 }

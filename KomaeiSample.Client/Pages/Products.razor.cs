@@ -14,7 +14,7 @@ public partial class Products
         ProductDtos = (await http.GetFromJsonAsync<ProductDto[]>("Product/GetAll"))!;
     }
 
-    private async Task OpenAddDialog(ProductDto? row)
+    private async Task OpenAddEditDialog(ProductDto? row)
     {
         var parameters = new DialogParameters();
         if (row != null) parameters.Add("row", row);
@@ -24,21 +24,6 @@ public partial class Products
         var dialogResult = await dialog.Result;
         if (dialogResult!.Canceled == false && dialogResult.Data is true)
             await GetGridData();
-    }
 
-    //private async Task OpenAddEditDialog(int orderId, int orderStatusId, string addUserMobile)
-    //{
-    //    var parameters = new DialogParameters();
-    //    if (orderId > 0)
-    //        parameters.Add("vm", new OrderEditVm { Id = orderId, OrderStatusId = orderStatusId, AddUserMobile = addUserMobile });
-    //    var options = ConstantsClient.DialogOptionsSmall;
-    //    var dialog = await dialogService.ShowAsync<OrderEdit>(
-    //        "تغییر وضعیت سفارش", parameters, options);
-    //    var dialogResult = await dialog.Result;
-    //    if (dialogResult!.Canceled == false && dialogResult.Data is true)
-    //    {
-    //        snackbar.Add("وضعیت سفارش با موفقیت تغییر کرد", Severity.Success);
-    //        await GetGridData();
-    //    }
-    //}
+    }
 }
