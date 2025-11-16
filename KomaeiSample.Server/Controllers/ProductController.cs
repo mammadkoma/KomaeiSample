@@ -9,7 +9,7 @@ public class ProductController(ProductService productService) : AppController
     }
 
     [HttpPost]
-    public async Task<ActionResult> AddEdit([FromForm] ProductVm vm)
+    public async Task<ActionResult> AddEdit([FromForm] ProductVmServer vm)
     {
         return Ok(await productService.AddEdit(vm));
     }

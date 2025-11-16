@@ -2,7 +2,7 @@
 
 public partial class ProductAddEdit
 {
-    private ProductVm vm = new();
+    private ProductVmClient vm = new();
     [CascadingParameter] private IMudDialogInstance MudDialog { get; set; } = default!;
     CategoryDto[] CategoryDtos = Array.Empty<CategoryDto>();
 

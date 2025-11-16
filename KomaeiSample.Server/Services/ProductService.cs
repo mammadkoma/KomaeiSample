@@ -7,7 +7,7 @@ public class ProductService(AppDbContext appDbContext, FileService fileService)
         return await appDbContext.Products.AsNoTracking().ProjectToType<ProductDto>().ToArrayAsync();
     }
 
-    public async Task<int> AddEdit(ProductVm vm)
+    public async Task<int> AddEdit(ProductVmServer vm)
     {
         if (vm.Id == null)
         {
