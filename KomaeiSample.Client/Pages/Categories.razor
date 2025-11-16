@@ -4,7 +4,7 @@
 <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Add" Size="Size.Small" Class="mb-2" OnClick="() => OpenAddEditDialog(null)" title="افزودن" />
 <MudDataGrid Items="CategoryDtos" Bordered Hover Dense Striped Elevation="4">
     <Columns>
-        <TemplateColumn Title="عملیات">
+        <TemplateColumn Title="عملیات" HeaderStyle="width:10px">
             <CellTemplate>
                 <MudMenu Icon="@Icons.Material.Filled.MoreVert" Size="Size.Small">
                     <MudMenuItem IconColor="Color.Info" Icon="@Icons.Material.Filled.Edit" OnClick="@(() => OpenAddEditDialog(context.Item))">ویرایش &nbsp;&nbsp</MudMenuItem>
