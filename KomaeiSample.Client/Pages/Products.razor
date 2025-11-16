@@ -8,5 +8,10 @@
         <PropertyColumn Property="x => x.CategoryTitle" Title="دسته" />
         <PropertyColumn Property="x => x.Title" Title="عنوان" />
         <PropertyColumn Property="x => x.Price" Title="قیمت" Format="N0" />
+        <TemplateColumn Title="تصویر">
+            <CellTemplate Context="context">
+                <MudImage Src="@("Uploads/Product/" + context.Item.FileName + context.Item.FileExtension)" Class="rounded" Fluid Style="max-width:250px" />
+            </CellTemplate>
+        </TemplateColumn>
     </Columns>
 </MudDataGrid>
