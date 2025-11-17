@@ -35,7 +35,7 @@
                 </MudItem>
 
                 <MudItem xs="12" sm="6">
-                    <MudFileUpload T="IBrowserFile" @bind-Files="vm.File" For="@(() => vm.File)" SuppressOnChangeWhenInvalid Accept=".png,.jpg,.jpeg">
+                    <MudFileUpload T="IBrowserFile" @bind-Files="vm.FileForClient" For="@(() => vm.FileForClient)" SuppressOnChangeWhenInvalid Accept=".png,.jpg,.jpeg">
                         <ActivatorContent>
                             <MudButton Variant="Variant.Filled" Color="Color.Default" StartIcon="@Icons.Material.Filled.CloudUpload" FullWidth Class="mt-3">
                                 انتخاب تصویر محصول * (حداکثر 300 KB)

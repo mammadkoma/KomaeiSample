@@ -13,26 +13,11 @@ public partial class ProductAddEdit
 
     private async Task OnValidSubmit()
     {
-        if (vm.File == null)
+        var fileForClientValidateResult = vm.FileForClient.Validate(300);
+        if (fileForClientValidateResult.IsValid == false)
         {
-            snackbar.Add("تصویر محصول را انتخاب کنید", Severity.Warning);
+            snackbar.Add(fileForClientValidateResult.Message, Severity.Warning);
             return;
-        }
-        if (vm.File != null)
-        {
-            if (vm.File.Size > 300 * 1024)
-            {
-                snackbar.Add("حجم تصویر بیشتر از 300 کیلوبایت است", Severity.Warning);
-                return;
-            }
-
-            var allowedExts = new[] { ".png", ".jpg", ".jpeg" };
-            var ext = Path.GetExtension(vm.File.Name).ToLower();
-            if (!allowedExts.Contains(ext))
-            {
-                snackbar.Add("فرمت تصویر مجاز نیست (فقط png, jpg, jpeg)", Severity.Warning);
-                return;
-            }
         }
 
         using var content = new MultipartFormDataContent();
@@ -40,11 +25,11 @@ public partial class ProductAddEdit
         content.Add(new StringContent(vm.Title), "Title");
         content.Add(new StringContent(vm.Price.ToString()!), "Price");
 
-        if (vm.File is not null)
+        if (vm.FileForClient is not null)
         {
-            var fileStream = vm.File.OpenReadStream(10_000_000);
+            var fileStream = vm.FileForClient.OpenReadStream(10_000_000);
             var fileContent = new StreamContent(fileStream);
-            content.Add(fileContent, nameof(vm.FileForServer), vm.File.Name);
+            content.Add(fileContent, "FileForServer", vm.FileForClient.Name);
         }
 
         var response = await http.PostAsync("Product/AddEdit", content);

@@ -21,14 +21,11 @@ public class ProductVm
 public class ProductVmClient : ProductVm
 {
     [Required(ErrorMessage = Constants.RequireMsg)]
-    public IBrowserFile? File { get; set; }
-    public IFormFile? FileForServer { get; set; }
+    public IBrowserFile FileForClient { get; set; } = null!;
 }
 
 public class ProductVmServer : ProductVm
 {
-    public IBrowserFile? FileForClient { get; set; }
-
     [Required(ErrorMessage = Constants.RequireMsg)]
-    public IFormFile? FileForServer { get; set; }
+    public required IFormFile FileForServer { get; set; }
 }
